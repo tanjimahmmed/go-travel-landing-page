@@ -21,7 +21,7 @@ function Navigation() {
                         {link.dropdown && (<span className='flex size-6 items-center justify-center'>
                             <CaretUp className='fill-gray-600 size-3.5 rotate-180 transition-all duration-250 group-hover:rotate-360 group-hover:fill-black'/>
                         </span>)}
-                        {/* {link.dropdown && <DesktopDropdown links={link.dropdownLinks}/>} */}
+                        {link.dropdown && <DesktopDropdown links={link.dropdownLinks}/>}
                     </li>
                 ))}
             </ul>

@@ -25,8 +25,8 @@ const Steps = () => {
                 </div>
                 <figure className='relative shrink-2 px-20'>
                     <img src={swimmingDudes} alt="A photo of two men swimming" className='max-h-[50.8rem] rounded-[3.5rem]' />
-                    <Rating/>
-                    <Rating/>
+                    <Rating name='Tiffany Miller' rating={4.6} img='/headshots/tiffany.webp' className='top-28 left-0'/>
+                    <Rating name='Amari Reece' rating={4.9} img='/headshots/amari.webp' className='right-0 bottom-28'/>
                 </figure>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { ReactElement } from "react"
 
 interface PageProps {
-    children: ReactElement;
+    children: ReactElement[];
 }
 const Page = (props: PageProps) => {
   return (

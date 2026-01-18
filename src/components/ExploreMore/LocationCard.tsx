@@ -1,3 +1,4 @@
+import { motion } from "motion/react"
 import { Location } from "../../utils/contentTypes"
 import { Location as LocationIcon } from "../Icons/Location"
 import Star from "../Icons/Star"
@@ -8,7 +9,12 @@ interface LocationProps {
 
 const LocationCard = ({location}: LocationProps) => {
   return (
-    <li className="group cursor-pointer">
+    <motion.li
+    initial={{opacity: 0, y: 20}}
+    animate={{opacity: 1, y: 0}}
+    exit={{opacity: 0, y: 20}}
+    transition={{duration: 0.35, ease: "easeInOut"}}
+    className="group cursor-pointer">
         <div className="relative mb-8 overflow-hidden rounded-3xl">
             <img className="transform transition-all duration-300 ease-in-out group-hover:scale-103" src={location.img} alt={location.alt} />
             <div className="absolute top-5 right-6 flex items-center gap-x-2 rounded-[.625rem] bg-white/85 px-3 py-1.5 backdrop-blur-3xl">
@@ -24,9 +30,9 @@ const LocationCard = ({location}: LocationProps) => {
                     <p className="text-grey-700 text-lg">{location.location}</p>
                 </div>
             </div>
-            <p>{location.pricePerPerson}/<span>Pax</span></p>
+            <p className="font-rubik text-[1.75rem]">${location.pricePerPerson}/<span className="text-[1.25rem]">Pax</span></p>
         </div>
-    </li>
+    </motion.li>
   )
 }
 

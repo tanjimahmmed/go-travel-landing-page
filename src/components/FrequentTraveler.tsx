@@ -3,7 +3,6 @@ import Checkmark from './Icons/Checkmark'
 
 const FrequentTraveler = () => {
     const [isChecked, setIsChecked] = useState<boolean>(false);
-    console.log(isChecked);
 
     function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
@@ -37,7 +36,7 @@ const FrequentTraveler = () => {
                         </button>
                         <p className='text-sm tracking-[.03rem]'>Agree to receive promotional email updates</p>
                     </label>
-                    <button className='hover:bg-primary-800 cursor-pointer rounded-[0.625rem] px-8 py-3.5 font-medium text-white transition-all duration-200 disabled:cursor-not-allowed' onClick={handleSubmit}>Learn More</button>
+                    <button className='bg-primary-700 hover:bg-primary-800 cursor-pointer rounded-[0.625rem] px-8 py-3.5 font-medium text-white transition-all duration-200 disabled:cursor-not-allowed' onClick={handleSubmit}>Learn More</button>
                 </div>
             </form>
         </div>

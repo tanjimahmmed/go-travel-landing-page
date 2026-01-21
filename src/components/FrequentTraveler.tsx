@@ -3,8 +3,25 @@ import Checkmark from './Icons/Checkmark'
 import { useFormAndValidation } from '../hooks/useFromAndValidation';
 import { motion, AnimatePresence } from 'motion/react';
 
+interface FormState {
+    currentState: "ideal" | "pending" | "success" | "error";
+    errorMessage: string | null;
+}
+
+const buttonStateClass = {
+    ideal: "bg-primary-700 opacity-100",
+    pending: "bg-primary-700 opacity-50",
+    success: "bg-green opacity-100",
+    error: "bg-red opacity-100",
+}
+
 const FrequentTraveler = () => {
+    const [formState, setFormState] = useState<FormState>({
+        currentState: "ideal",
+        errorMessage: null
+    })
     const [isChecked, setIsChecked] = useState<boolean>(false);
+    
 
     const {values, errors, isValid, handleChange, resetForm} = useFormAndValidation({
         fullName: "",
@@ -14,7 +31,8 @@ const FrequentTraveler = () => {
     function handleSubmit(e: MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         if(isChecked && isValid) {
-            // we can submit the form!
+            setFormState({currentState: "success", errorMessage: null});
+            setTimeout(() => setFormState({currentState: "ideal", errorMessage: null}), 2000)
             resetForm();
         }
     }
@@ -51,7 +69,13 @@ const FrequentTraveler = () => {
                         </button>
                         <p className='text-sm tracking-[.03rem]'>Agree to receive promotional email updates</p>
                     </label>
-                    <button className='bg-primary-700 hover:bg-primary-800 cursor-pointer rounded-[0.625rem] px-8 py-3.5 font-medium text-white transition-all duration-200 disabled:cursor-not-allowed' onClick={handleSubmit}>Learn More</button>
+
+                    <button className={`enabled:hover:bg-primary-800 cursor-pointer rounded-[0.625rem] px-8 py-3.5 font-medium text-white transition-all duration-200 disabled:cursor-not-allowed ${buttonStateClass[formState.currentState]}`} onClick={handleSubmit} disabled={formState.currentState !== "ideal"}>
+                        {formState.currentState === "ideal" && "Learn More"}
+                        {formState.currentState === "pending" && "Submitting..."}
+                        {formState.currentState === "success" && "Success!"}
+                        {formState.currentState === "error" && "Submission Failed"}
+                    </button>
                 </div>
             </form>
         </div>

@@ -4,7 +4,7 @@ import Rating from './Rating';
 
 const Steps = () => {
   return (
-    <section className='px-24 py-36'>
+    <section className='px-24 py-36' id="ExploreMore">
         <div className='m-auto max-w-432 px-21.5'>
             <div className='mt-4 text-center'>
                 <h2 className='tracking-6 mb-5 text-[3.25rem] font-semibold'>Travel to make sweet memories</h2>

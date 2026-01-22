@@ -1,4 +1,5 @@
 import ExploreMore from "./components/ExploreMore/ExploreMore";
+import Footer from "./components/Footer";
 import FrequentTraveler from "./components/FrequentTraveler";
 import Header from "./components/Header";
 import Hero from "./components/Hero/Hero";
@@ -8,6 +9,7 @@ import News from "./components/News/News";
 import Page from "./components/Page";
 import Services from "./components/Services/Services";
 import Steps from "./components/Steps/Steps";
+import Testimonials from "./components/Testimonials/Testimonials";
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <News/>
         <ExploreMore/>
         <FrequentTraveler/>
+        <Testimonials/>
       </Main>
+        <Footer/>
     </Page>
   )
 }

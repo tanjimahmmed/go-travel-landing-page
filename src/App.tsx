@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ExploreMore from "./components/ExploreMore/ExploreMore";
 import Footer from "./components/Footer";
 import FrequentTraveler from "./components/FrequentTraveler";
@@ -11,8 +13,11 @@ import Services from "./components/Services/Services";
 import Steps from "./components/Steps/Steps";
 import Testimonials from "./components/Testimonials/Testimonials";
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
     <Page>
       <Header>
         <Navigation/>
@@ -28,6 +33,8 @@ function App() {
       </Main>
         <Footer/>
     </Page>
+    <ReactQueryDevtools/>
+    </QueryClientProvider>
   )
 }
 

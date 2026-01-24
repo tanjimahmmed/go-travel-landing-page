@@ -1,4 +1,3 @@
-import React from 'react'
 import ErrorIcon from './Icons/ErrorIcon'
 
 const Error = (props: {children: string}) => {

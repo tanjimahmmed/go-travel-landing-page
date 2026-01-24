@@ -1,4 +1,3 @@
-import React from 'react'
 import BlogPost from './BlogPost'
 import useQueryBlogPosts from '../../hooks/useQueryBlogPosts'
 import Error from '../Error';

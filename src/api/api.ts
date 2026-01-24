@@ -9,6 +9,7 @@ const supabase = createClient<Database>(supabaseUrl, supabaseKey);
 
 export async function getBlogPosts() {
     const {data, error} = await supabase.from("BlogPosts").select();
+    // throw new Error("some error occurred...")
     if(error){
         throw new Error(`ERROR: Database returned error when fetching blog posts: ${error.message}`)
     }

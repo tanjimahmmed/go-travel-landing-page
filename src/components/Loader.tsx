@@ -1,12 +1,9 @@
-import React from 'react'
-import Spinner from './Icons/Spinner'
+import Spinner from "./Icons/Spinner";
 
-const Loader = () => {
+export default function Loader() {
   return (
-    <div className='flex items-center justify-center px-24 py-64'>
-        <Spinner/>
+    <div className="flex items-center justify-center px-24 py-64">
+      <Spinner />
     </div>
-  )
+  );
 }
-
-export default Loader

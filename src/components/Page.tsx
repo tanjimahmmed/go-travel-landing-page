@@ -1,12 +1,11 @@
-import { ReactElement } from "react"
+import { ReactElement } from "react";
 
 interface PageProps {
-    children: ReactElement[];
-}
-const Page = (props: PageProps) => {
-  return (
-    <div>{props.children}</div>
-  )
+  children: ReactElement[];
 }
 
-export default Page
+function Page(props: PageProps) {
+  return <div>{props.children}</div>;
+}
+
+export default Page;

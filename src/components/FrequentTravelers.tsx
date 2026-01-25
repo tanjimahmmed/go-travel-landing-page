@@ -4,6 +4,7 @@ import { useFormAndValidation } from "../hooks/useFormAndValidation";
 import Checkmark from "./Icons/Checkmark";
 import useInsertLead from "../hooks/useInsertLead";
 import { FORM_STATE_DURATION } from "../utils/constants";
+import { logCustomEvent } from "../analytics";
 
 interface FormState {
   currentState: "idle" | "pending" | "success" | "error";
@@ -61,6 +62,7 @@ export default function FrequentTravelers() {
       () => setFormState({ currentState: "idle", errorMessage: null }),
       FORM_STATE_DURATION,
     );
+    logFormSubmit("null");
   }
 
   function handleError(error: Error) {
@@ -70,6 +72,18 @@ export default function FrequentTravelers() {
       () => setFormState({ currentState: "idle", errorMessage: null }),
       FORM_STATE_DURATION,
     );
+    logFormSubmit(`Form submission error with message - ${error.message}`);
+  }
+
+  function logFormSubmit(error: string = "") {
+    logCustomEvent({
+      category: "user_engagement",
+      action: "form_submit",
+      eventName: "frequent_travelers_form_submit",
+      customProps: {
+        errorMessage: error
+      }
+    })
   }
 
   return (

@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "./Database";
-import { BlogPost, Location } from "../utils/contentTypes";
+import { BlogPost, Lead, Location } from "../utils/contentTypes";
 
 const supabaseUrl = "https://dxdadufyxlrbyxwenigz.supabase.co";
 const supabaseKey = import.meta.env.VITE_SUPABASE_API_KEY;
@@ -29,6 +29,7 @@ export async function getBlogPosts() {
 
 export async function getLocations() {
     const {data, error} = await supabase.from("Locations").select();
+    // throw new Error("some error occurred...")
     if(error){
         throw new Error(`ERROR: Database returned error when fetching locations: ${error.message}`)
     }
@@ -46,3 +47,17 @@ export async function getLocations() {
     });
     return locations;
 } 
+
+export async function insertLead(Lead: Lead){
+    const {error} = await supabase.from('Leads').insert([
+        {
+            created_at: Lead.createdAt,
+            full_name: Lead.fullName,
+            email_address: Lead.emailAddress
+        }
+    ]);
+
+    if(error){
+        throw new Error(`Error: Database returned error when inserting lead data: ${error.message}`)
+    }
+}

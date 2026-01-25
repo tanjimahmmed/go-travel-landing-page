@@ -1,13 +1,16 @@
 import { useState } from "react"
-import { locations } from "../../utils/content"
 import CaretUp from "../Icons/CaretUp"
 import LocationCard from "./LocationCard"
 import { LOCATION_CARD_SHOWN } from "../../utils/constants"
+import useQueryLocations from "../../hooks/useQueryLocations"
+import Loader from "../Loader"
+import Error from "../Error"
 
 const ExploreMore = () => {
+    const {locations, error, isLoading} = useQueryLocations();
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-    const totalLocations = locations.length;
-    const renderLocations = locations.slice(currentIndex, currentIndex + LOCATION_CARD_SHOWN);
+    const totalLocations = locations?.length || 0;
+    const renderLocations = locations?.slice(currentIndex, currentIndex + LOCATION_CARD_SHOWN);
 
     const handleRightClick = () => setCurrentIndex((prevIndex) => prevIndex + 1);
     const handleLeftClick = () => setCurrentIndex((prevIndex) => prevIndex - 1);
@@ -25,11 +28,13 @@ const ExploreMore = () => {
                     <button onClick={handleRightClick} disabled={currentIndex >= totalLocations - LOCATION_CARD_SHOWN} aria-label="arrow right" className="bg-primary-700 not-disabled:hover:bg-primary-800 flex size-18 cursor-pointer place-content-center rounded-full transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50"><CaretUp className="w-6 rotate-90 fill-white"/></button>
                 </div>
             </div>
-            <ul className="mt-33 grid grid-cols-3 gap-x-29 gap-y-24">
-                {renderLocations.map((location) => (
+            {isLoading && !error && <Loader/>}
+            {!isLoading && !error && (<ul className="mt-33 grid grid-cols-3 gap-x-29 gap-y-24">
+                {renderLocations?.map((location) => (
                     <LocationCard location={location} key={location.id}/>
                 ))}
-            </ul>
+            </ul>)}
+            {!isLoading && error && (<Error>It looks like something went wrong while loading our travel locations!</Error>)}
         </div>
     </section>
   )
